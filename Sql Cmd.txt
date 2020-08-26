@@ -1,0 +1,21 @@
+SQL> show user
+USER is "SYSTEM"
+SQL> alter user triyoto quota unlimited on users;
+
+User altered.
+
+SQL> insert into T_GURU values('10','triyoto','053556','Pria','sag','cilacap');
+
+1 row created.
+
+SQL> create user indaka identified by 22051994;
+
+ invalid common role name
+
+SQL> alter session set "_ORACLE_SCRIPT"=true;
+
+ ok berhasill
+
+SQL> grant connect, resources to indaka;
+
+
