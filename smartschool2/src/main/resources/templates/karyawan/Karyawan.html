@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Smart School</title>
+<!-- Tag meta untuk menentukan karakter encoding yang digunakan, biasanya UTF-8 -->
+<meta charset="utf-8" />
+
+<!-- Judul Web -->
+<title>Karyawan</title>
+
+<!-- Tag meta untuk melakukan sekala secara responsif terhadap viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Menyisipkan Bootstrap -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h4 align="right">
+			<button type="button" class="btn btn-info">
+				<a class="text-white" href="newKaryawan">Tambah Data</a>
+			</button>
+		</h4>
+
+		<h2>Berikut Data Karyawan</h2>
+		<table class="table table-bordered table-sm">
+			<thead class="table-active">
+				 
+				<tr>
+							<td rowspan="2">&emsp;No&emsp;</td>
+							<td rowspan="2">&emsp;NIK&emsp;</td>
+							<td rowspan="2">&emsp;Nama&emsp;</td>
+							<td rowspan="2">&emsp;Tanggal Lahir&emsp;</td>
+							<td rowspan="2">&emsp;Gender&emsp;</td>
+							<td rowspan="2">&emsp;Pendidikan&emsp;</td>
+							<td colspan="3">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Action</td>
+						</tr>
+						<tr class="table-info text-info">
+							<td>&emsp;Edit&emsp;</td>
+							<td>&emsp;Delete&emsp;</td>
+							<td>&emsp;Detil&emsp;</td>
+						</tr>
+			</thead>
+			<tr th:each="karyawanModel:${listKaryawan}">
+				<td th:text="${karyawanModel.no}">NO</td>
+				<td th:text="${karyawanModel.nik}">NIK</td>
+				<td th:text="${karyawanModel.nama}">NAMA</td>
+		    	<td th:text="${karyawanModel.tanggalLahir}">TANGGAL LAHIR</td>
+				<td th:text="${karyawanModel.gender}">GENDER</td>
+				<td th:text="${karyawanModel.pendidikan}">PENDIDIKAN</td>
+				<td><button type="button" class="btn btn-info">
+									<a class="text-white"
+										th:href="@{'/editKaryawan/' + ${karyawanModel.no}}">Edit</a>
+								</button></td>
+							<td><button type="button" class="btn btn-info">
+									<a class="text-white"
+										th:href="@{'/deleteKaryawan/' + ${karyawanModel.no}}">Delete</a>
+								</button></td>
+							<td><button type="button" class="btn btn-info">
+									<a class="text-white"th:href="@{'/detilKaryawan/' + ${karyawanModel.no}}">Detil</a>
+								</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

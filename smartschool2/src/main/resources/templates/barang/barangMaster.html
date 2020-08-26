@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Smart School</title>
+<!-- Tag meta untuk menentukan karakter encoding yang digunakan, biasanya UTF-8 -->
+<meta charset="utf-8" />
+
+<!-- Judul Web -->
+<title>Barang</title>
+
+<!-- Tag meta untuk melakukan sekala secara responsif terhadap viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Menyisipkan Bootstrap -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<!-- Membuat komponen jubotron sebagai header -->
+	<div class="container-fluid">
+		<div class="row bg-light border">
+
+			<div class="col">
+				<h1>Smart School</h1>
+				<div class="lead">Batch 5</div>
+				<div class="lead">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Membuat komponen body-->
+	<div class="container-fluid">
+		<!-- Membuat Side bar-->
+		<div class="row">
+			<div class="col-md-2 bg-light border">
+
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						Master&nbsp;&nbsp; &nbsp;</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" th:href="@{/pelajaran}">Pelajaran</a> <a
+							class="dropdown-item" href="#">Guru</a> <a class="dropdown-item"
+							href="#">Kelas</a> <a class="dropdown-item" href="#">Siswa</a> <a
+							class="dropdown-item" th:href="@{/barang}">Barang</a> <a
+							class="dropdown-item" href="#">Distributor</a>
+					</div>
+				</div>
+				<br> <br> <br> <br> <br> <br> <br>
+				<br> <br>
+
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button"
+						id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Transaksi</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Penjadwalan</a> <a
+							class="dropdown-item" href="#">Nilai Siswa</a> <a
+							class="dropdown-item" href="#">SPP</a> <a class="dropdown-item"
+							href="#">Pembayaran</a> <a class="dropdown-item" href="#">Pengadaan</a>
+						<a class="dropdown-item" href="#">Operasional</a>
+					</div>
+				</div>
+				<br> <br> <br> <br> <br> <br> <br>
+				<br> <br>
+			</div>
+
+
+			<!-- Membuat Konten-->
+			<div class="col-md-10 bg-white border table-responsive">
+				<h4 align="left">Data Barang</h4>
+
+				<h4 align="right">
+					<button type="button" class="btn btn-info">
+						<a class="text-white" href="new">Tambah</a>
+					</button>
+				</h4>
+
+				<table class="table table-bordered table-sm">
+					<thead class="table-active">
+						<tr>
+							<td rowspan="2">&emsp;Kode Barang&emsp;</td>
+							<td rowspan="2">&emsp;Nama Barang&emsp;</td>
+							<td rowspan="2">&emsp;Satuan&emsp;</td>
+							<td colspan="3">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Action</td>
+						</tr>
+						<tr class="table-info text-info">
+							<td>&emsp;Edit&emsp;</td>
+							<td>&emsp;Delete&emsp;</td>
+							<td>&emsp;Detil&emsp;</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="barangModel:${listBarang}">
+							<td th:text="${barangModel.kodeBarang}"></td>
+							<td th:text="${barangModel.namaBarang}"></td>
+							<td th:text="${barangModel.satuan}"></td>
+							<td><button type="button" class="btn btn-info">
+									<a class="text-white"
+										th:href="@{'/edit/' + ${barangModel.kodeBarang}}">Edit</a>
+								</button></td>
+							<td><button type="button" class="btn btn-info">
+									<a class="text-white"
+										th:href="@{'/delete/' + ${barangModel.kodeBarang}}">Delete</a>
+								</button></td>
+							<td><button type="button" class="btn btn-info">
+									<a class="text-white"th:href="@{'/detil/' + ${barangModel.kodeBarang}}">Detil</a>
+								</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</body>
+</html>
